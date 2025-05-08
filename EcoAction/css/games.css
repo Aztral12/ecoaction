@@ -1,0 +1,372 @@
+
+:root {
+    --primary-color: #2E7D32;
+    --secondary-color: #4CAF50;
+    --accent-color: #8BC34A;
+    --text-color: #333;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-color);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.games-hero {
+    height: 40vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../image/games_bg.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding-top: 80px;
+}
+
+.games-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.games-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    color: white;
+}
+
+.games-hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.games-section {
+    padding: 80px 0;
+}
+
+.games-section:nth-child(even) {
+    background-color: white;
+}
+
+.games-section:nth-child(odd) {
+    background-color: var(--light-color);
+}
+
+.game-container {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.game-container h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+/* Quiz Styles */
+.quiz-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.quiz-question {
+    margin-bottom: 30px;
+    display: none;
+}
+
+.quiz-question.active {
+    display: block;
+}
+
+.quiz-question h4 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--dark-color);
+}
+
+.quiz-options {
+    list-style: none;
+}
+
+.quiz-option {
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: var(--light-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quiz-option:hover {
+    background-color: #e9ecef;
+}
+
+.quiz-option.selected {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.quiz-option.correct {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.quiz-option.incorrect {
+    background-color: #dc3545;
+    color: white;
+}
+
+.quiz-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.quiz-result {
+    text-align: center;
+    display: none;
+}
+
+.quiz-result h3 {
+    margin-bottom: 20px;
+}
+
+.quiz-score {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.quiz-feedback {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+/* Memory Game Styles */
+.memory-game {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.memory-card {
+    height: 120px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    cursor: pointer;
+}
+
+.memory-card.flipped {
+    transform: rotateY(180deg);
+}
+
+.memory-card-front, .memory-card-back {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    position: absolute;
+    border-radius: 5px;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.memory-card-front {
+    background-color: var(--primary-color);
+    color: white;
+    transform: rotateY(180deg);
+    font-size: 0.9rem;
+}
+
+.memory-card-back {
+    background-color: var(--accent-color);
+    color: white;
+    font-size: 2rem;
+}
+
+.memory-result {
+    text-align: center;
+    margin-top: 30px;
+    display: none;
+}
+
+/* Waste Sorting Game Styles */
+.waste-game {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.waste-score {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.score-item {
+    background-color: var(--light-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.waste-items-container {
+    background-color: var(--light-color);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.waste-items-container h4 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.waste-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    min-height: 100px;
+}
+
+.waste-item {
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: grab;
+    width: 120px;
+    transition: all 0.3s ease;
+}
+
+.waste-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.waste-item i {
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.waste-item.dragging {
+    opacity: 0.5;
+}
+
+.waste-bins {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.waste-bin {
+    border: 3px dashed #ddd;
+    border-radius: 8px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.waste-bin:hover {
+    border-color: var(--accent-color);
+}
+
+.bin-hover {
+    border-color: var(--primary-color);
+    background-color: rgba(46, 125, 50, 0.05);
+}
+
+.correct-drop {
+    border-color: var(--primary-color);
+    background-color: rgba(46, 125, 50, 0.2);
+}
+
+.incorrect-drop {
+    border-color: #dc3545;
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+.bin-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.waste-bin[data-bin="recycle"] .bin-icon {
+    color: #2196F3;
+}
+
+.waste-bin[data-bin="compost"] .bin-icon {
+    color: var(--primary-color);
+}
+
+.waste-bin[data-bin="trash"] .bin-icon {
+    color: #6c757d;
+}
+
+.sorting-result {
+    text-align: center;
+    background-color: var(--light-color);
+    padding: 30px;
+    border-radius: 8px;
+    display: none;
+}
+
+.sorting-accuracy {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 15px 0;
+}

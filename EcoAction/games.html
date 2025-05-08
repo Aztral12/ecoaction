@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environmental Games | EcoAction</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/games.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="image/leaf-solid.svg">
+
+</head>
+<body>
+<!-- Navbar Component -->
+<header>
+    <div class="container">
+        <nav>
+            <a href="#" class="logo"><i class="fas fa-leaf"></i> EcoAction</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="help.html">Solutions</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="https://www.worldwildlife.org/" class="btn btn-outline">Take Action</a>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </div>
+</header>
+    
+    <section class="games-hero">
+        <div class="container">
+            <div class="games-hero-content">
+                <h1>Environmental Games</h1>
+                <p>Test your knowledge and learn more about environmental issues through our interactive games.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="games-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Environmental Quiz</h2>
+                <p>Test your knowledge about environmental issues and solutions.</p>
+            </div>
+            
+            <div class="game-container">
+                <h3>Eco Knowledge Challenge</h3>
+                <div class="quiz-container">
+                    <div id="quiz-question-1" class="quiz-question active">
+                        <h4>1. What is the current global temperature increase since pre-industrial times?</h4>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">0.5°C</li>
+                            <li class="quiz-option" data-correct="true">1.1°C</li>
+                            <li class="quiz-option" data-correct="false">2.0°C</li>
+                            <li class="quiz-option" data-correct="false">3.5°C</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="quiz-question-2" class="quiz-question">
+                        <h4>2. How many tons of plastic enter our oceans annually?</h4>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">1 million tons</li>
+                            <li class="quiz-option" data-correct="false">4 million tons</li>
+                            <li class="quiz-option" data-correct="true">8 million tons</li>
+                            <li class="quiz-option" data-correct="false">12 million tons</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="quiz-question-3" class="quiz-question">
+                        <h4>3. What percentage of Earth's land animals and plants live in forests?</h4>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">50%</li>
+                            <li class="quiz-option" data-correct="false">65%</li>
+                            <li class="quiz-option" data-correct="true">80%</li>
+                            <li class="quiz-option" data-correct="false">95%</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="quiz-question-4" class="quiz-question">
+                        <h4>4. Which of the following is NOT a key solution for addressing climate change?</h4>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Transition to renewable energy sources</li>
+                            <li class="quiz-option" data-correct="false">Improve energy efficiency in buildings</li>
+                            <li class="quiz-option" data-correct="true">Increase fossil fuel subsidies</li>
+                            <li class="quiz-option" data-correct="false">Protect and restore carbon sinks like forests</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="quiz-question-5" class="quiz-question">
+                        <h4>5. How long does it take for plastic to degrade in the environment?</h4>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">50 years</li>
+                            <li class="quiz-option" data-correct="false">100 years</li>
+                            <li class="quiz-option" data-correct="false">200 years</li>
+                            <li class="quiz-option" data-correct="true">Up to 400 years</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="quiz-question-6" class="quiz-question">
+                        <h4>6. What is the biggest driver of deforestation globally?</h4>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="true">Agriculture</li>
+                            <li class="quiz-option" data-correct="false">Logging</li>
+                            <li class="quiz-option" data-correct="false">Mining</li>
+                            <li class="quiz-option" data-correct="false">Urban development</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="quiz-question-7" class="quiz-question">
+                        <h4>7. Which international agreement aims to limit global warming to well below 2°C above pre-industrial levels?</h4>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Kyoto Protocol</li>
+                            <li class="quiz-option" data-correct="false">Montreal Protocol</li>
+                            <li class="quiz-option" data-correct="true">Paris Agreement</li>
+                            <li class="quiz-option" data-correct="false">Rio Declaration</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="quiz-question-8" class="quiz-question">
+                        <h4>8. What percentage of greenhouse gas emissions come from deforestation?</h4>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">5%</li>
+                            <li class="quiz-option" data-correct="true">15%</li>
+                            <li class="quiz-option" data-correct="false">25%</li>
+                            <li class="quiz-option" data-correct="false">35%</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="quiz-question-9" class="quiz-question">
+                        <h4>9. Which of these is NOT a way to reduce your carbon footprint?</h4>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="false">Using public transportation</li>
+                            <li class="quiz-option" data-correct="false">Eating less meat</li>
+                            <li class="quiz-option" data-correct="true">Increasing water usage</li>
+                            <li class="quiz-option" data-correct="false">Supporting sustainable businesses</li>
+                        </ul>
+                    </div>
+                    
+                    <div id="quiz-question-10" class="quiz-question">
+                        <h4>10. Which book published in 1962 is credited with launching the modern environmental movement?</h4>
+                        <ul class="quiz-options">
+                            <li class="quiz-option" data-correct="true">Silent Spring</li>
+                            <li class="quiz-option" data-correct="false">The Sixth Extinction</li>
+                            <li class="quiz-option" data-correct="false">Drawdown</li>
+                            <li class="quiz-option" data-correct="false">This Changes Everything</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz-controls">
+                        <button id="quiz-prev" class="btn btn-outline btn-disabled">Previous</button>
+                        <button id="quiz-next" class="btn">Next</button>
+                    </div>
+                    
+                    <div id="quiz-result" class="quiz-result">
+                        <h3>Quiz Completed!</h3>
+                        <div class="quiz-score">0/10</div>
+                        <div class="quiz-feedback">Keep learning about environmental issues to improve your score!</div>
+                        <button id="quiz-restart" class="btn">Try Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="games-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Environmental Memory Match</h2>
+                <p>Match environmental concepts with their descriptions in this memory game.</p>
+            </div>
+            
+            <div class="game-container">
+                <h3>Eco-Concept Match</h3>
+                <div class="memory-game">
+                    <div class="memory-card" data-pair="climate">
+                        <div class="memory-card-front">Rising global temperatures causing extreme weather events</div>
+                        <div class="memory-card-back"><i class="fas fa-question"></i></div>
+                    </div>
+                    <div class="memory-card" data-pair="climate">
+                        <div class="memory-card-front">Climate Change</div>
+                        <div class="memory-card-back"><i class="fas fa-question"></i></div>
+                    </div>
+                    
+                    <div class="memory-card" data-pair="plastic">
+                        <div class="memory-card-front">Waste that takes up to 400 years to degrade</div>
+                        <div class="memory-card-back"><i class="fas fa-question"></i></div>
+                    </div>
+                    <div class="memory-card" data-pair="plastic">
+                        <div class="memory-card-front">Plastic Pollution</div>
+                        <div class="memory-card-back"><i class="fas fa-question"></i></div>
+                    </div>
+                    
+                    <div class="memory-card" data-pair="forest">
+                        <div class="memory-card-front">Clearing of trees for agriculture and development</div>
+                        <div class="memory-card-back"><i class="fas fa-question"></i></div>
+                    </div>
+                    <div class="memory-card" data-pair="forest">
+                        <div class="memory-card-front">Deforestation</div>
+                        <div class="memory-card-back"><i class="fas fa-question"></i></div>
+                    </div>
+                    
+                    <div class="memory-card" data-pair="renewable">
+                        <div class="memory-card-front">Energy from sources that naturally replenish</div>
+                        <div class="memory-card-back"><i class="fas fa-question"></i></div>
+                    </div>
+                    <div class="memory-card" data-pair="renewable">
+                        <div class="memory-card-front">Renewable Energy</div>
+                        <div class="memory-card-back"><i class="fas fa-question"></i></div>
+                    </div>
+                </div>
+                
+                <div id="memory-result" class="memory-result">
+                    <h3>Congratulations!</h3>
+                    <p>You've matched all the pairs in <span id="memory-moves">0</span> moves!</p>
+                    <button id="memory-restart" class="btn">Play Again</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="games-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Waste Sorting Challenge</h2>
+                <p>Learn proper waste disposal by sorting items into the correct bins.</p>
+            </div>
+            
+            <div class="game-container">
+                <h3>Sort It Right!</h3>
+                
+                <div class="waste-game">
+                    <div class="waste-score">
+                        <div class="score-item">
+                            <span>Correct:</span>
+                            <span id="correct-sorts">0</span>
+                        </div>
+                        <div class="score-item">
+                            <span>Incorrect:</span>
+                            <span id="incorrect-sorts">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="waste-items-container">
+                        <h4>Drag items to the correct bin</h4>
+                        <div class="waste-items">
+                            <!-- Items will be added by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="waste-bins">
+                        <div class="waste-bin" data-bin="recycle">
+                            <div class="bin-icon">
+                                <i class="fas fa-recycle"></i>
+                            </div>
+                            <h4>Recycling</h4>
+                        </div>
+                        
+                        <div class="waste-bin" data-bin="compost">
+                            <div class="bin-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <h4>Compost</h4>
+                        </div>
+                        
+                        <div class="waste-bin" data-bin="trash">
+                            <div class="bin-icon">
+                                <i class="fas fa-trash"></i>
+                            </div>
+                            <h4>Landfill</h4>
+                        </div>
+                    </div>
+                    
+                    <div id="sorting-result" class="sorting-result">
+                        <h3>Sorting Complete!</h3>
+                        <div class="sorting-accuracy">
+                            <span>Accuracy:</span>
+                            <span id="sorting-accuracy">0%</span>
+                        </div>
+                        <p id="sorting-message"></p>
+                        <button id="sorting-restart" class="btn">Play Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About EcoAction</h3>
+                    <p>We are dedicated to raising awareness about environmental issues and empowering individuals to take action for a sustainable future.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="help.html">Solutions</a></li>
+                        <li><a href="games.html">Games</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Green Street, Eco City</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@ecoaction.org</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 EcoAction. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/games.js"></script>
+</body>
+</html>
