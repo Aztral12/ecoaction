@@ -213,7 +213,7 @@ body {
     background-color: var(--primary-color);
     color: white;
     transform: rotateY(180deg);
-    font-size: 0.9rem;
+    font-size: 0.7rem;
 }
 
 .memory-card-back {
