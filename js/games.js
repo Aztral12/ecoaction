@@ -217,192 +217,148 @@ $(document).ready(function() {
         });
     }
     
-// Waste Sorting Game
-document.addEventListener('DOMContentLoaded', function() {
-    const wasteItems = document.querySelectorAll('.waste-item');
-    const wasteBins = document.querySelectorAll('.waste-bin');
-    const sortingResult = document.getElementById('sorting-result');
-    const sortingAccuracy = document.getElementById('sorting-accuracy');
-    const sortingMessage = document.getElementById('sorting-message');
-    const sortingRestart = document.getElementById('sorting-restart');
+    // Waste Sorting Game
+    let correctSorts = 0;
+    let incorrectSorts = 0;
     
-    let totalItems = wasteItems.length;
-    let correctItems = 0;
-    let itemsProcessed = 0;
-    
-    // Initialize draggable items
-    wasteItems.forEach(item => {
-        // Make items draggable
-        item.setAttribute('draggable', 'true');
-        
-        // Add drag event listeners for desktop
-        item.addEventListener('dragstart', dragStart);
-        
-        // Add touch event listeners for mobile
-        item.addEventListener('touchstart', touchStart, {passive: false});
-        item.addEventListener('touchmove', touchMove, {passive: false});
-        item.addEventListener('touchend', touchEnd, {passive: false});
+    // Make items draggable
+    $('.waste-item').draggable({
+        revert: 'invalid',
+        cursor: 'move',
+        helper: 'clone',
+        start: function(event, ui) {
+            $(this).addClass('dragging');
+        },
+        stop: function(event, ui) {
+            $(this).removeClass('dragging');
+        }
     });
     
-    // Add drop event listeners to bins
-    wasteBins.forEach(bin => {
-        bin.addEventListener('dragover', dragOver);
-        bin.addEventListener('dragenter', dragEnter);
-        bin.addEventListener('dragleave', dragLeave);
-        bin.addEventListener('drop', drop);
-    });
-    
-    // Drag functions for desktop
-    function dragStart(e) {
-        e.dataTransfer.setData('text/plain', e.target.id);
-        setTimeout(() => {
-            e.target.classList.add('dragging');
-        }, 0);
-    }
-    
-    function dragOver(e) {
-        e.preventDefault();
-    }
-    
-    function dragEnter(e) {
-        e.preventDefault();
-        this.classList.add('drag-over');
-    }
-    
-    function dragLeave() {
-        this.classList.remove('drag-over');
-    }
-    
-    function drop(e) {
-        e.preventDefault();
-        this.classList.remove('drag-over');
-        
-        const id = e.dataTransfer.getData('text/plain');
-        const draggable = document.getElementById(id);
-        
-        if (draggable) {
-            processItem(draggable, this);
-        }
-    }
-    
-    // Touch functions for mobile
-    let touchDragging = null;
-    
-    function touchStart(e) {
-        e.preventDefault();
-        touchDragging = this;
-        this.classList.add('dragging');
-        
-        // Store the initial touch position
-        const touch = e.touches[0];
-        this.initialX = touch.clientX - this.offsetLeft;
-        this.initialY = touch.clientY - this.offsetTop;
-    }
-    
-    function touchMove(e) {
-        if (!touchDragging) return;
-        e.preventDefault();
-        
-        const touch = e.touches[0];
-        
-        // Calculate new position
-        touchDragging.style.position = 'absolute';
-        touchDragging.style.zIndex = 1000;
-        touchDragging.style.left = (touch.clientX - touchDragging.initialX) + 'px';
-        touchDragging.style.top = (touch.clientY - touchDragging.initialY) + 'px';
-    }
-    
-    function touchEnd(e) {
-        if (!touchDragging) return;
-        e.preventDefault();
-        
-        // Find which bin the item is over
-        const touch = e.changedTouches[0];
-        const elemBelow = document.elementFromPoint(touch.clientX, touch.clientY);
-        const binBelow = elemBelow.closest('.waste-bin');
-        
-        if (binBelow) {
-            processItem(touchDragging, binBelow);
-        } else {
-            // Reset position if not dropped on a bin
-            touchDragging.style.position = '';
-            touchDragging.style.left = '';
-            touchDragging.style.top = '';
-            touchDragging.style.zIndex = '';
-            touchDragging.classList.remove('dragging');
-        }
-        
-        touchDragging = null;
-    }
-    
-    // Process the dropped item
-    function processItem(item, bin) {
-        const correctBin = item.dataset.bin;
-        const targetBin = bin.dataset.bin;
-        
-        // Hide the item from its original position
-        item.style.display = 'none';
-        
-        // Create a clone in the bin
-        const clone = item.cloneNode(true);
-        clone.style.display = 'block';
-        clone.style.position = '';
-        clone.style.left = '';
-        clone.style.top = '';
-        clone.style.zIndex = '';
-        clone.classList.remove('dragging');
-        bin.appendChild(clone);
-        
-        // Check if correct
-        if (correctBin === targetBin) {
-            correctItems++;
-            clone.classList.add('correct-item');
-        } else {
-            clone.classList.add('wrong-item');
-        }
-        
-        itemsProcessed++;
-        
-        // Check if game is complete
-        if (itemsProcessed === totalItems) {
-            const accuracy = Math.round((correctItems / totalItems) * 100);
-            sortingAccuracy.textContent = accuracy + '%';
+    // Make bins droppable
+    $('.waste-bin').droppable({
+        accept: '.waste-item',
+        hoverClass: 'bin-hover',
+        drop: function(event, ui) {
+            const binType = $(this).data('bin');
+            const itemType = ui.draggable.data('type');
             
-            if (accuracy >= 80) {
-                sortingMessage.textContent = 'Great job! You're a recycling expert!';
-            } else if (accuracy >= 50) {
-                sortingMessage.textContent = 'Good effort! Keep learning about proper waste sorting.';
+            // Check if correct bin
+            if (binType === itemType) {
+                // Correct sort
+                correctSorts++;
+                
+                // Show success feedback
+                $(this).addClass('correct-drop');
+                setTimeout(() => {
+                    $(this).removeClass('correct-drop');
+                }, 500);
+                
+                // Remove the sorted item
+                ui.draggable.fadeOut(300, function() {
+                    $(this).remove();
+                    
+                    // Check if all items sorted
+                    if ($('.waste-item').length === 0) {
+                        // Game complete
+                        showSortingResults();
+                    }
+                });
             } else {
-                sortingMessage.textContent = 'Keep practicing! Proper waste sorting is important for our environment.';
+                // Incorrect sort
+                incorrectSorts++;
+                
+                // Show error feedback
+                $(this).addClass('incorrect-drop');
+                setTimeout(() => {
+                    $(this).removeClass('incorrect-drop');
+                }, 500);
+                
+                // Shake the item
+                ui.draggable.effect('shake', { times: 2, distance: 5 }, 300);
             }
             
-            sortingResult.style.display = 'block';
+            // Update score
+            $('#correct-sorts').text(correctSorts);
+            $('#incorrect-sorts').text(incorrectSorts);
         }
-    }
-    
-    // Restart the game
-    sortingRestart.addEventListener('click', function() {
-        // Reset counters
-        correctItems = 0;
-        itemsProcessed = 0;
-        
-        // Reset items
-        wasteItems.forEach(item => {
-            item.style.display = 'block';
-            item.style.position = '';
-            item.style.left = '';
-            item.style.top = '';
-            item.style.zIndex = '';
-            item.classList.remove('dragging');
-        });
-        
-        // Remove cloned items from bins
-        wasteBins.forEach(bin => {
-            const clonedItems = bin.querySelectorAll('.waste-item');
-            clonedItems.forEach(item => bin.removeChild(item));
-        });
-        
-        // Hide result
-        sortingResult.style.display = 'none';
     });
+    
+    // Reset sorting game
+    $('#sorting-restart').on('click', function() {
+        // Reset game state
+        correctSorts = 0;
+        incorrectSorts = 0;
+        
+        // Reset UI
+        $('#correct-sorts').text('0');
+        $('#incorrect-sorts').text('0');
+        $('#sorting-result').hide();
+        
+        // Restore items
+        $('.waste-items').empty();
+        
+        const wasteItems = [
+            { name: 'Plastic Bottle', type: 'recycle', icon: 'fa-bottle-water' },
+            { name: 'Banana Peel', type: 'compost', icon: 'fa-apple-whole' },
+            { name: 'Glass Jar', type: 'recycle', icon: 'fa-jar' },
+            { name: 'Used Tissue', type: 'trash', icon: 'fa-toilet-paper' },
+            { name: 'Aluminum Can', type: 'recycle', icon: 'fa-database' },
+            { name: 'Coffee Grounds', type: 'compost', icon: 'fa-mug-hot' },
+            { name: 'Plastic Bag', type: 'trash', icon: 'fa-bag-shopping' },
+            { name: 'Newspaper', type: 'recycle', icon: 'fa-newspaper' },
+            { name: 'Egg Shells', type: 'compost', icon: 'fa-egg' }
+        ];
+        
+        // Shuffle items
+        for (let i = wasteItems.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [wasteItems[i], wasteItems[j]] = [wasteItems[j], wasteItems[i]];
+        }
+        
+        // Add items to container
+        wasteItems.forEach(item => {
+            const itemElement = $('<div class="waste-item" data-type="' + item.type + '">' +
+                '<i class="fas ' + item.icon + '"></i>' +
+                '<span>' + item.name + '</span>' +
+            '</div>');
+            
+            $('.waste-items').append(itemElement);
+            
+            // Make new items draggable
+            itemElement.draggable({
+                revert: 'invalid',
+                cursor: 'move',
+                helper: 'clone',
+                start: function(event, ui) {
+                    $(this).addClass('dragging');
+                },
+                stop: function(event, ui) {
+                    $(this).removeClass('dragging');
+                }
+            });
+        });
+    });
+    
+    // Initialize sorting game
+    $('#sorting-restart').trigger('click');
+    
+    // Show sorting results
+    function showSortingResults() {
+        const totalSorts = correctSorts + incorrectSorts;
+        const accuracy = Math.round((correctSorts / totalSorts) * 100);
+        
+        $('#sorting-accuracy').text(accuracy + '%');
+        
+        let message = '';
+        if (accuracy >= 90) {
+            message = 'Excellent! You\'re a waste sorting expert!';
+        } else if (accuracy >= 70) {
+            message = 'Good job! You\'re getting the hang of proper waste sorting.';
+        } else {
+            message = 'Keep practicing! Proper waste sorting is an important skill.';
+        }
+        
+        $('#sorting-message').text(message);
+        $('#sorting-result').show();
+    }
 });
