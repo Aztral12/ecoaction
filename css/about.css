@@ -76,6 +76,8 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     padding: 30px;
+    background-color: white;
+    text-align: center;
 }
 
 .about-card:hover {
@@ -352,5 +354,17 @@ body {
     
     .issue-text h3 {
         font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-card {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .about-card .btn-outline {
+        display: inline-block;
+        margin-top: 15px;
     }
 }
